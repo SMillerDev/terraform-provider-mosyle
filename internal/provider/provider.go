@@ -26,11 +26,36 @@ func init() {
 func New(version string) func() *schema.Provider {
 	return func() *schema.Provider {
 		p := &schema.Provider{
-			DataSourcesMap: map[string]*schema.Resource{
-				"scaffolding_data_source": dataSourceScaffolding(),
+			Schema: map[string]*schema.Schema{
+				"username": &schema.Schema{
+					Type:        schema.TypeString,
+					Optional:    true,
+					Description: "Username used to log in to Mosyle",
+					DefaultFunc: schema.EnvDefaultFunc("MOSYLE_USERNAME", nil),
+				},
+				"password": &schema.Schema{
+					Type:        schema.TypeString,
+					Optional:    true,
+					Sensitive:   true,
+					Description: "Password used to log in to Mosyle",
+					DefaultFunc: schema.EnvDefaultFunc("MOSYLE_PASSWORD", nil),
+				},
+				"accesstoken": &schema.Schema{
+					Type:        schema.TypeString,
+					Optional:    true,
+					Sensitive:   true,
+					Description: "Access Token from the Mosyle API integration",
+					DefaultFunc: schema.EnvDefaultFunc("MOSYLE_TOKEN", nil),
+				},
 			},
 			ResourcesMap: map[string]*schema.Resource{
-				"scaffolding_resource": resourceScaffolding(),
+				"mosyle_user": resourceUser(),
+			},
+			DataSourcesMap: map[string]*schema.Resource{
+				"mosyle_devices":      dataSourceDevices(),
+				"mosyle_devicegroups": dataSourceDeviceGroups(),
+				"mosyle_users":        dataSourceUsers(),
+				"mosyle_usergroups":   dataSourceUserGroups(),
 			},
 		}
 
@@ -47,11 +72,25 @@ type apiClient struct {
 }
 
 func configure(version string, p *schema.Provider) func(context.Context, *schema.ResourceData) (interface{}, diag.Diagnostics) {
-	return func(context.Context, *schema.ResourceData) (interface{}, diag.Diagnostics) {
-		// Setup a User-Agent for your API client (replace the provider name for yours):
-		// userAgent := p.UserAgent("terraform-provider-scaffolding", version)
-		// TODO: myClient.UserAgent = userAgent
+	return func(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
+		username := d.Get("username").(string)
+		password := d.Get("password").(string)
+		accesstoken := d.Get("accesstoken").(string)
 
-		return &apiClient{}, nil
+		// Warning or errors can be collected in a slice type
+		var diags diag.Diagnostics
+
+		if (username != "") && (password != "") && (accesstoken != "") {
+			c, err := MosyleClient(version, &username, &password, &accesstoken)
+
+			return c, diag.FromErr(err)
+		}
+
+		c, err := MosyleClient(version, nil, nil, nil)
+		if err != nil {
+			return nil, diag.FromErr(err)
+		}
+
+		return c, diags
 	}
 }
