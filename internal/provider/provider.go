@@ -49,7 +49,8 @@ func New(version string) func() *schema.Provider {
 				},
 			},
 			ResourcesMap: map[string]*schema.Resource{
-				"mosyle_user": resourceUser(),
+				"mosyle_user":       resourceUser(),
+				"mosyle_assignment": resourceAssignment(),
 			},
 			DataSourcesMap: map[string]*schema.Resource{
 				"mosyle_devices":      dataSourceDevices(),

@@ -105,6 +105,8 @@ type ListResponse struct {
 		Devices    []map[string]interface{} `json:"devices,omitempty"`
 		Users      []map[string]interface{} `json:"users,omitempty"`
 		UserGroups []map[string]interface{} `json:"usergroups,omitempty"`
+		UserId     string                   `json:"iduser,omitempty"`
+		Serial     string                   `json:"serialnumber,omitempty"`
 		Rows       int                      `json:"rows"`
 		PageSize   int                      `json:"page_size"`
 		Page       int                      `json:"page"`

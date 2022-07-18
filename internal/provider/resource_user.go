@@ -19,13 +19,13 @@ func resourceUser() *schema.Resource {
 		DeleteContext: resourceUserDelete,
 		Description:   "User data",
 		Schema: map[string]*schema.Schema{
-			"name":       &schema.Schema{Type: schema.TypeString, Required: true, Description: "User name",},
-			"identifier": &schema.Schema{Type: schema.TypeString, Required: true, Description: "User identifier, set by admin",},
-			"email":      &schema.Schema{Type: schema.TypeString, Optional: true, Description: "User email",},
-			"type":       &schema.Schema{Type: schema.TypeString, Optional: true, Default: "ENDUSER", Description: "User type, one of (ENDUSER|GROUP_ADMIN|ADMIN) default: ENDUSER",},
-			"iduser":     &schema.Schema{Type: schema.TypeString, Computed: true, Description: "User id from mosyle",},
-			"code":       &schema.Schema{Type: schema.TypeString, Computed: true, Description: "User code",},
-			"is_removed": &schema.Schema{Type: schema.TypeBool, Computed: true, Description: "User is removed",},
+			"name":       &schema.Schema{Type: schema.TypeString, Required: true, Description: "User name"},
+			"identifier": &schema.Schema{Type: schema.TypeString, Required: true, Description: "User identifier, set by admin"},
+			"email":      &schema.Schema{Type: schema.TypeString, Optional: true, Description: "User email"},
+			"type":       &schema.Schema{Type: schema.TypeString, Optional: true, Default: "ENDUSER", Description: "User type, one of (ENDUSER|GROUP_ADMIN|ADMIN) default: ENDUSER"},
+			"iduser":     &schema.Schema{Type: schema.TypeString, Computed: true, Description: "User id from mosyle"},
+			"code":       &schema.Schema{Type: schema.TypeString, Computed: true, Description: "User code"},
+			"is_removed": &schema.Schema{Type: schema.TypeBool, Computed: true, Description: "User is removed"},
 		},
 	}
 }
