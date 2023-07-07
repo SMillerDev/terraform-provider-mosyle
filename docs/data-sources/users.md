@@ -36,5 +36,3 @@ Read-Only:
 - `is_removed` (Boolean)
 - `name` (String)
 - `type` (String)
-
-

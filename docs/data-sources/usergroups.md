@@ -37,5 +37,3 @@ Read-Only:
 - `idusers_primary` (List of String)
 - `is_removed` (Boolean)
 - `name` (String)
-
-

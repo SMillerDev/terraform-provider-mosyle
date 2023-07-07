@@ -31,5 +31,3 @@ User data
 - `id` (String) The ID of this resource.
 - `iduser` (String) User id from mosyle
 - `is_removed` (Boolean) User is removed
-
-

@@ -32,5 +32,3 @@ Read-Only:
 - `device_numbers` (Number)
 - `id` (String)
 - `name` (String)
-
-

@@ -108,5 +108,3 @@ Read-Only:
 - `usertype` (String)
 - `vpn_status` (String)
 - `wifi_mac_address` (String)
-
-

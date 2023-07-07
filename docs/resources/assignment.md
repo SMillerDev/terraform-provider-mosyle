@@ -25,5 +25,3 @@ Assignment data
 
 - `device_udid` (String) Device UDID
 - `id` (String) The ID of this resource.
-
-
