@@ -1,6 +1,6 @@
 module github.com/smillerdev/terraform-provider-mosyle
 
-go 1.18
+go 1.20
 
 require (
 	github.com/hashicorp/terraform-plugin-docs v0.16.0
