@@ -3,7 +3,7 @@ module github.com/smillerdev/terraform-provider-mosyle
 go 1.20
 
 require (
-	github.com/hashicorp/terraform-plugin-docs v0.19.3
+	github.com/hashicorp/terraform-plugin-docs v0.19.4
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
 )
 
